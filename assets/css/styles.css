@@ -1,0 +1,1003 @@
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --header-height: 3rem;
+  --font-semi: 600;
+
+  /*===== Colores =====*/
+  /*Purple 260 - Red 355 - Blue 224 - Pink 340*/
+  /* HSL color mode */
+  --hue-color: 330;
+  --first-color: hsl(var(--hue-color), 65%, 50%);
+  --second-color: hsl(var(--hue-color), 45%, 25%);
+
+  /*===== Font & Typography =====*/
+  --font: "Roboto Mono", serif;
+  --big-font-size: 2rem;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+  --smaller-font-size: 0.75rem;
+
+  /*===== Margenes =====*/
+  --mb-2: 1rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+  --mb-6: 3rem;
+
+  /*===== z index =====*/
+  --z-back: -10;
+  --z-fixed: 100;
+}
+@media screen and (min-width: 968px) {
+  :root {
+    --big-font-size: 3.5rem;
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --smaller-font-size: 0.875rem;
+  }
+}
+
+/* ================== BASE ================== */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: var(--second-color);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================== CLASS CSS ================== */
+.section-title {
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+}
+.section-title::after {
+  position: absolute;
+  content: "";
+  width: 64px;
+  height: 0.18rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 2rem;
+  background-color: var(--first-color);
+  border-radius: 0.5rem;
+}
+
+.section {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+/* ================== LAYOUT ================== */
+.bd-grid {
+  max-width: 1024px;
+  display: grid;
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+}
+
+.l-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
+}
+
+/* ================== NAV ================== */
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--font-semi);
+}
+
+.nav__logo {
+  color: var(--second-color);
+}
+
+/* Add hover effect to change icon color */
+.nav__logo:hover {
+  color: var(--first-color); /* Change icon color on hover */
+}
+
+/* Optional: Icon's glow effect on hover */
+.nav__logo:hover {
+  text-shadow: 0 0 8px var(--first-color), 0 0 12px var(--first-color); /* Glow effect on icon */
+}
+
+.nav__menu {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--mb-4);
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: fixed;
+    top: var(--header-height);
+    right: -100%;
+    width: 80%;
+    height: 100%;
+    padding: 2rem;
+    background-color: var(--second-color);
+    transition: 0.5s;
+  }
+}
+
+.nav__item {
+  margin-top: 0.6rem;
+  margin-bottom: var(--mb-4);
+}
+
+.nav__link {
+  position: relative;
+  color: #fff;
+  display: inline-block;
+}
+
+.nav__link:hover {
+  position: relative;
+}
+
+.nav__link:hover::after {
+  position: absolute;
+  content: "";
+  width: 40%; /* Initial width of 30% */
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--first-color);
+  transition: width 0.4s ease-in-out; /* Transition for width */
+}
+
+.nav__link::after {
+  position: absolute;
+  content: "";
+  width: 0%; /* Initial width is 0% */
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  background-color: var(--first-color);
+  transition: width 0.4s ease-in-out; /* Transition for width */
+}
+
+/* Active menu link */
+.nav__link.active-link {
+  color: var(--first-color); /* Change text color when active */
+}
+
+.nav__link.active-link::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--first-color); /* Active color underline */
+}
+
+/* ================== Show menu ================== */
+.show {
+  right: 0;
+}
+
+/* Resume Button */
+.sec-button {
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-weight: var(--font-semi);
+  border-radius: 0.1rem;
+  border: 3px solid var(--first-color);
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: var(--first-color);
+  text-decoration: none;
+  transition: 0.4s ease all;
+  z-index: 1;
+}
+
+.sec-button::before {
+  transition: 0.4s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: "";
+  background-color: var(--first-color);
+  z-index: -1;
+}
+
+.sec-button:hover,
+.sec-button:focus {
+  color: #fff;
+}
+
+.sec-button:hover:before,
+.sec-button:focus:before {
+  transition: 0.4s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+/* ================== HOME ================== */
+.home {
+  position: relative;
+  row-gap: 5rem;
+  padding: 4rem 0 5rem;
+}
+.home__data {
+  align-self: center;
+}
+
+.home__title {
+  font-size: var(--big-font-size);
+  margin-bottom: var(--mb-5);
+}
+
+.home__title-color {
+  color: var(--first-color);
+}
+
+/* Typing Effect */
+.typing-container {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.typing-text {
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: var(--big-font-size);
+}
+
+/* Cursor Blinking */
+.cursor {
+  font-weight: bold;
+  margin-left: 2px;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1; /* Cursor visible at the start */
+  }
+  50% {
+    opacity: 0; /* Cursor disappears at halfway point */
+  }
+  100% {
+    opacity: 1; /* Cursor comes back visible at the end */
+  }
+}
+
+/* Home Social ICONS  */
+/* Container for social icons */
+.home__social {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.home__social-icon {
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  transition: 0.3s;
+  width: 45px;
+  color: var(--second-color);
+  font-size: 1.5rem;
+}
+
+/* Hover effect with centered dashed circle and rotation */
+.home__social-icon:hover::after {
+  border: 2px dashed var(--first-color);
+  border-radius: 50%;
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(360deg);
+  animation: rotateBorder 0.35s linear infinite;
+}
+
+/* Hover effect: Change color of the SVG and apply glow effect on hover */
+.home__social-icon:hover svg {
+  color: var(--first-color); 
+  filter: drop-shadow(0 0 8px var(--first-color))
+    drop-shadow(0 0 12px var(--first-color)); /* Glow effect */
+}
+
+/* Increase the font size of icons */
+.home__social-icon svg {
+  font-size: 1.7rem; /* Increase icon size */
+}
+
+/* Keyframes for rotating the dashed border */
+@keyframes rotateBorder {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg); /* Start at 0 degrees */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); /* Rotate to 360 degrees */
+  }
+}
+
+.home__img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 260px;
+}
+.home__blob {
+  fill: var(--first-color);
+}
+.home__blob-img {
+  width: 360px;
+  border-radius: 50%;
+}
+
+/*======================================*/
+/* General container styles */
+.home__img {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Define the rotation animation */
+@keyframes rotateElement {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg); /* Start at 0 degrees */
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); /* Rotate to 360 degrees */
+  }
+}
+
+/* Apply the rotation animation to each individual group on hover */
+.middle-one:hover,
+.left-one:hover,
+.right-one:hover {
+  animation: rotateBorder 0.3s linear infinite;
+}
+
+/*======================================*/
+/*BUTTONS*/
+
+/*Primary Button*/
+.primary-button {
+  display: inline-block;
+  text-align: center;
+  padding: 0.75rem 2.5rem;
+  font-weight: var(--font-semi);
+  border-radius: 0.1rem;
+  border: 3px solid var(--first-color);
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  background-color: var(--first-color);
+  text-decoration: none;
+  transition: 0.4s ease all;
+  z-index: 1;
+  margin-top: 10px;
+}
+
+.primary-button::before {
+  transition: 0.4s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: "";
+  background-color: #fff;
+  z-index: -1;
+}
+
+.primary-button:hover,
+.primary-button:focus {
+  color: var(--first-color);
+}
+
+.primary-button:hover:before,
+.primary-button:focus:before {
+  transition: 0.4s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+/*Secondary Button*/
+.secondary-button {
+  display: inline-block;
+  text-align: center;
+  padding: 0.75rem 2.5rem;
+  font-weight: var(--font-semi);
+  border-radius: 0.1rem;
+  border: 3px solid var(--first-color);
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: var(--first-color);
+  background-color: #ffffff;
+  text-decoration: none;
+  transition: 0.4s ease all;
+  z-index: 1;
+  margin-top: 10px;
+}
+
+.secondary-button::before {
+  transition: 0.4s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: "";
+  background-color: var(--first-color);
+  z-index: -1;
+}
+
+.secondary-button:hover,
+.secondary-button:focus {
+  color: #fff;
+}
+
+.secondary-button:hover:before,
+.secondary-button:focus:before {
+  transition: 0.4s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+/* ================== ABOUT ================== */
+.about__container {
+  row-gap: 2rem;
+  text-align: center;
+}
+.about__subtitle {
+  margin-bottom: var(--mb-2);
+}
+.about__img {
+  justify-self: center;
+}
+.about__img img {
+  width: 200px;
+  border-radius: 0.5rem;
+}
+.about__text {
+  margin-bottom: var(--mb-2);
+}
+
+/* ================== SKILLS ================== */
+.skills__container {
+  row-gap: 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+.skills__data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  font-weight: var(--font-semi);
+  padding: 0.5rem 1rem;
+  /* gap: var(--mb-2); */
+  margin-bottom: var(--mb-4);
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+}
+.skills__data:hover {
+  background-color: var(--first-color);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+}
+
+/* Optional: Adjust SVG icon color on hover */
+.skills__data:hover svg,
+.skills__names:hover {
+  fill: #ffffff; /* Change icon color */
+  color: #ffffff;
+}
+.skills__icon {
+  width: 40px;
+  height: 40px;
+  margin-right: var(--mb-2);
+  fill: var(--first-color);
+}
+.skills__names {
+  display: flex;
+  align-items: center;
+}
+
+/* ================== WORK ================== */
+.work__container {
+  row-gap: 2rem;
+}
+.work__tile {
+  display: grid;
+  place-items: center;
+  border-radius: 0.5rem;
+}
+
+.card__article {
+  position: relative;
+  overflow: hidden;
+}
+
+.card__img img {
+  border-radius: 0.5rem;
+}
+
+.card__data {
+  width: 280px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.15);
+  border-radius: 0.5rem;
+  position: absolute;
+  bottom: -8.5rem;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 1s 1s;
+}
+
+.card__description {
+  display: block;
+  font-size: var(--small-font-size);
+  margin-bottom: 0.3rem;
+}
+
+.card__title {
+  font-size: var(--h2-font-size);
+  font-weight: 500;
+  color: var(--title-color);
+  margin-bottom: 0.75rem;
+}
+
+.card__button {
+  text-decoration: none;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  color: var(--first-color);
+  margin: 0 0.5rem;
+}
+
+.card__button:hover {
+  text-decoration: underline;
+}
+
+/* Naming animations in hover */
+.card__article:hover .card__data {
+  animation: show-data 1s forwards;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.card__article:hover {
+  animation: remove-overflow 2s forwards;
+}
+
+.card__article:not(:hover) {
+  animation: show-overflow 2s forwards;
+}
+
+.card__article:not(:hover) .card__data {
+  animation: remove-data 1s forwards;
+}
+
+/* Card animation */
+@keyframes show-data {
+  50% {
+    transform: translateY(-10rem);
+  }
+  100% {
+    transform: translateY(-7rem);
+  }
+}
+
+@keyframes remove-overflow {
+  to {
+    overflow: initial;
+  }
+}
+
+@keyframes remove-data {
+  0% {
+    transform: translateY(-7rem);
+  }
+  50% {
+    transform: translateY(-10rem);
+  }
+  100% {
+    transform: translateY(0.5rem);
+  }
+}
+
+@keyframes show-overflow {
+  0% {
+    overflow: initial;
+    pointer-events: none;
+  }
+  50% {
+    overflow: hidden;
+  }
+}
+
+/* ================== CONTACT ================== */
+.contact__input {
+  width: 100%;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid var(--second-color);
+  outline: none;
+  margin-bottom: var(--mb-4);
+}
+
+/* Notification Banner Styles */
+.notification-banner {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--first-color);
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+/* ================== FOOTER ================== */
+.footer {
+  background-color: var(--second-color);
+  color: #fff;
+  text-align: center;
+  font-weight: var(--font-semi);
+  padding: 2rem 0;
+}
+
+.footer__title {
+  font-size: 1.5rem;
+  margin-bottom: var(--mb-4);
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  gap: var(--mb-2);
+  margin-bottom: var(--mb-4);
+}
+
+/* Footer icon styling */
+.footer__icon {
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  transition: 0.3s;
+  width: 45px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Hover effect with centered dashed circle and rotation */
+.footer__icon:hover::after {
+  border: 2px dashed var(--first-color);
+  border-radius: 50%;
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(360deg);
+  animation: rotateBorder 0.35s linear infinite;
+}
+
+/* Hover effect: Change color of the SVG and apply glow effect on hover */
+.footer__icon:hover svg {
+  color: var(--first-color); /* Change SVG color on hover */
+  filter: drop-shadow(0 0 8px var(--first-color))
+    drop-shadow(0 0 12px var(--first-color)); /* Glow effect */
+}
+
+/* Increase the font size of icons */
+.footer__icon svg {
+  font-size: 1.7rem; /* Increase icon size */
+}
+
+/* Keyframes for rotating the dashed border */
+@keyframes rotateBorder {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg); /* Start at 0 degrees */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); /* Rotate to 360 degrees */
+  }
+}
+
+.footer__copy {
+  font-size: var(--smaller-font-size);
+}
+
+/* ================== MEDIA QUERIES ==================*/
+@media screen and (max-width: 320px) {
+  .nav__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .home {
+    row-gap: 2rem;
+  }
+  .home__img {
+    width: 200px;
+  }
+  .home__buttons {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .skills__container {
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: initial;
+  }
+  .skills__data {
+    margin-bottom: var(--mb-2);
+  }
+}
+/*====================================*/
+@media screen and (min-width: 320px) and (max-width: 576px) {
+  .nav__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .home__buttons {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .skills__container {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: initial;
+    column-gap: 0.5rem;
+  }
+  .skills__data {
+    margin-bottom: var(--mb-2);
+  }
+}
+
+/*====================================*/
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .nav__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .home {
+    padding: 4rem 0 2rem;
+  }
+  .home__buttons {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+  .home__social {
+    padding-top: 0;
+    padding-bottom: 2.5rem;
+    flex-direction: row;
+    align-self: flex-end;
+  }
+  .home__social-icon {
+    margin-bottom: 0;
+    margin-right: var(--mb-4);
+  }
+  .home__img {
+    width: 300px;
+    bottom: 25%;
+  }
+  .about__container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    text-align: initial;
+  }
+  .skills__container {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: initial;
+    column-gap: 1rem;
+  }
+  .work__container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    padding-top: 2rem;
+  }
+  .contact__form {
+    width: 360px;
+    padding-top: 2rem;
+  }
+  .contact__container {
+    justify-items: center;
+  }
+  .footer__social {
+    gap: var(--mb-4);
+  }
+}
+
+/*====================================*/
+@media screen and (min-width: 768px) {
+  body {
+    margin: 0;
+  }
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+  .section-title {
+    margin-bottom: var(--mb-6);
+  }
+  .section-title::after {
+    width: 80px;
+    top: 3rem;
+    border-radius: 0.5rem;
+  }
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+  }
+  .nav__list {
+    display: flex;
+    padding-top: 0;
+  }
+  .nav__item {
+    margin-left: var(--mb-6);
+    margin-bottom: 0;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__link {
+    color: var(--second-color);
+  }
+  .home {
+    padding: 8rem 0 2rem;
+  }
+  .home__buttons {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .home__img {
+    width: 400px;
+    bottom: 10%;
+  }
+  .home__social {
+    display: flex;
+    flex-direction: row;
+  }
+  .about__container {
+    padding-top: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    text-align: initial;
+  }
+  .about__img img {
+    width: 300px;
+  }
+  .skills__container {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
+    align-items: center;
+    text-align: initial;
+  }
+  .work__container {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+  }
+  .footer__social {
+    gap: var(--mb-4);
+  }
+}
+
+/*====================================*/
+@media screen and (min-width: 992px) {
+  .bd-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .home {
+    padding: 10rem 0 2rem;
+  }
+  .home__buttons {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--mb-2);
+  }
+  .home__img {
+    width: 450px;
+  }
+  .footer__social {
+    gap: var(--mb-4);
+  }
+}
