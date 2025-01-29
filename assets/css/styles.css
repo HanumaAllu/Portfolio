@@ -226,6 +226,41 @@ img {
   right: 0;
 }
 
+.nav__toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 16px; /* Width of the bars */
+  height: 2px; /* Height of the bars */
+  margin: 2.5px 0; /* Reduced margin for less space between lines */
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: var(--second-color);
+}
+
+@media (max-width: 1024px) {
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__toggle.active .bar:nth-child(2) {
+    opacity: 0; /* Hide the middle bar when active */
+  }
+
+  .nav__toggle.active .bar:nth-child(1) {
+    transform: translateY(4.5px) rotate(45deg); /* Adjust position for X shape */
+    margin-top: 0; /* Remove margin to maintain position */
+  }
+
+  .nav__toggle.active .bar:nth-child(3) {
+    transform: translateY(-4.5px) rotate(-45deg); /* Adjust position for X shape */
+    margin-bottom: 0; /* Remove margin to maintain position */
+  }
+}
+
 /* Resume Button */
 .sec-button {
   display: inline-block;
@@ -358,7 +393,7 @@ img {
 
 /* Hover effect: Change color of the SVG and apply glow effect on hover */
 .home__social-icon:hover svg {
-  color: var(--first-color); 
+  color: var(--first-color);
   filter: drop-shadow(0 0 8px var(--first-color))
     drop-shadow(0 0 12px var(--first-color)); /* Glow effect */
 }

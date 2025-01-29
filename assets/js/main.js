@@ -1,7 +1,7 @@
-/*===== MENU SHOW =====*/
+/*==================== MENU SHOW ====================*/
 const showMenu = (toggleId, navId) => {
-  const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId);
+  const toggle = document.getElementById(toggleId);
+  const nav = document.getElementById(navId);
 
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
@@ -9,19 +9,33 @@ const showMenu = (toggleId, navId) => {
     });
   }
 };
+
+// Initialize menu toggle
 showMenu("nav-toggle", "nav-menu");
 
-/*==================== REMOVE MENU MOBILE ====================*/
-const navLink = document.querySelectorAll(".nav__link");
+/*==================== HAMBURGER MENU TOGGLE ====================*/
+const hamburger = document.querySelector(".nav__toggle");
+const navMenu = document.querySelector(".nav__menu");
 
+// Toggle active class for hamburger and nav menu
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+});
+
+/*==================== REMOVE MENU ON LINK CLICK ====================*/
+const navLinks = document.querySelectorAll(".nav__link");
+
+// Function to remove the active class from the menu
 function linkAction() {
-  const navMenu = document.getElementById("nav-menu");
-  // When we click on each nav__link, we remove the show-menu class
   navMenu.classList.remove("show");
+  hamburger.classList.remove("active"); // Optionally remove active class from hamburger
 }
-navLink.forEach((n) => n.addEventListener("click", linkAction));
 
-// Typing Effect
+// Add click event listener to each navigation link
+navLinks.forEach((link) => link.addEventListener("click", linkAction));
+
+/*==================== TYPING EFFECT ====================*/
 const text = "Web Developer"; // Text to be typed
 const typingText = document.getElementById("typingText");
 const cursor = document.getElementById("cursor");
@@ -139,14 +153,14 @@ document
 
 function showNotification(message) {
   const banner = document.getElementById("notificationBanner");
-  banner.textContent = message; // Set the message text
-  banner.style.display = "block"; // Show the banner
-  banner.style.opacity = "1"; // Make it visible
+  banner.textContent = message;
+  banner.style.display = "block";
+  banner.style.opacity = "1";
 
   setTimeout(() => {
-    banner.style.opacity = "0"; // Fade out effect
+    banner.style.opacity = "0";
     setTimeout(() => {
-      banner.style.display = "none"; // Hide after fading out
+      banner.style.display = "none";
     }, 500); // Match with CSS transition duration
   }, 3000); // Show for 3 seconds
 }
