@@ -164,3 +164,56 @@ function showNotification(message) {
     }, 500); // Match with CSS transition duration
   }, 3000); // Show for 3 seconds
 }
+
+/*==================== DARK MODE ====================*/
+// Function to toggle dark mode
+function toggleDarkMode() {
+  const body = document.body;
+  const fab = document.getElementById("theme-toggle-fab");
+
+  // Toggle dark mode class
+  body.classList.toggle("dark-mode");
+
+  // Save the theme preference in localStorage
+  if (body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+    fab.innerHTML = "☀️"; // Change icon to sun for light mode
+  } else {
+    localStorage.setItem("theme", "light");
+    fab.innerHTML = "🌙"; // Change icon to moon for dark mode
+  }
+}
+
+// Load the theme on page load
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+
+  // Check for saved theme and apply it
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    document.getElementById("theme-toggle-fab").innerHTML = "☀️"; // Sun icon for light mode
+  } else if (savedTheme === "light") {
+    document.body.classList.remove("dark-mode");
+    document.getElementById("theme-toggle-fab").innerHTML = "🌙"; // Moon icon for dark mode
+  } else {
+    // Check system preference if no saved theme
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      document.body.classList.add("dark-mode");
+      document.getElementById("theme-toggle-fab").innerHTML = "☀️"; // Sun icon for light mode
+    } else {
+      document.body.classList.remove("dark-mode");
+      document.getElementById("theme-toggle-fab").innerHTML = "🌙"; // Moon icon for dark mode
+    }
+  }
+}
+
+// Event listener for the floating action button
+document
+  .getElementById("theme-toggle-fab")
+  .addEventListener("click", toggleDarkMode);
+
+// Call loadTheme on page load
+loadTheme();

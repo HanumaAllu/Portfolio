@@ -11,7 +11,9 @@
   /* HSL color mode */
   --hue-color: 330;
   --first-color: hsl(var(--hue-color), 65%, 50%);
-  --second-color: hsl(var(--hue-color), 45%, 25%);
+  --second-color: hsl(var(--hue-color), 50%, 25%);
+  --background-color: #ffffff; /* Light background */
+  --text-color: var(--second-color); /* Default text color */
 
   /*===== Font & Typography =====*/
   --font: "Roboto Mono", serif;
@@ -30,6 +32,15 @@
   --z-back: -10;
   --z-fixed: 100;
 }
+
+/* Dark Theme Colors */
+.dark-mode {
+  --first-color: hsl(var(--hue-color), 70%, 50%); /* Lighter first color */
+  --second-color: hsl(var(--hue-color), 45%, 30%); /* Lighter secondary color */
+  --background-color: hsl(0, 0%, 5%); /* Dark background */
+  --text-color: hsl(0, 0%, 95%); /* Light gray text */
+}
+
 @media screen and (min-width: 968px) {
   :root {
     --big-font-size: 3.5rem;
@@ -51,11 +62,11 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: var(--background-color);
   margin: var(--header-height) 0 0 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
-  color: var(--second-color);
+  color: var(--text-color);
 }
 
 h1,
@@ -121,7 +132,7 @@ img {
   top: 0;
   left: 0;
   z-index: var(--z-fixed);
-  background-color: #ffffff;
+  background-color: var(--background-color);
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
 }
 
@@ -301,6 +312,28 @@ img {
   left: 0;
   right: 0;
   opacity: 1;
+}
+
+/* DARK MODE Floating Action Button Styles */
+.fab {
+  position: fixed;
+  bottom: 20px; /* Distance from bottom */
+  right: 20px; /* Distance from right */
+  background-color: var(--first-color);
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fab:hover {
+  background-color: var(--second-color); /* Change color on hover */
 }
 
 /* ================== HOME ================== */
@@ -578,14 +611,15 @@ img {
   align-items: center;
   position: relative;
   font-weight: var(--font-semi);
-  padding: 0.5rem 1rem;
-  /* gap: var(--mb-2); */
+  padding: 0.5rem 0.5rem;
   margin-bottom: var(--mb-4);
+  border: 1.5px solid var(--second-color);
   border-radius: 0.5rem;
   box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
 }
 .skills__data:hover {
   background-color: var(--first-color);
+  border: 1.5px solid var(--first-color);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
 }
 
@@ -729,6 +763,7 @@ img {
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1.5px solid var(--second-color);
+  background-color: var(--background-color);
   outline: none;
   margin-bottom: var(--mb-4);
 }
