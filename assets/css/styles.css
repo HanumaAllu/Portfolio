@@ -50,6 +50,44 @@
   }
 }
 
+/* DARK MODE Floating Action Button Styles */
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--second-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease, filter 0.3s ease;
+}
+
+.fab:hover {
+  background-color: var(--first-color);
+  filter: drop-shadow(0 0 8px var(--first-color))
+    drop-shadow(0 0 12px var(--first-color));
+}
+
+/* Base styles for SVG icons */
+.fab svg {
+  width: 26px;
+  height: 26px;
+  color: var(--first-color);
+  transition: color 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover effect: Change color of the SVG and apply glow effect on hover */
+.fab:hover svg {
+  color: var(--second-color);
+  filter: drop-shadow(0 0 8px var(--first-color))
+    drop-shadow(0 0 12px var(--first-color));
+}
+
 /* ================== BASE ================== */
 *,
 ::before,
@@ -312,28 +350,6 @@ img {
   left: 0;
   right: 0;
   opacity: 1;
-}
-
-/* DARK MODE Floating Action Button Styles */
-.fab {
-  position: fixed;
-  bottom: 20px; /* Distance from bottom */
-  right: 20px; /* Distance from right */
-  background-color: var(--first-color);
-  color: white;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.fab:hover {
-  background-color: var(--second-color); /* Change color on hover */
 }
 
 /* ================== HOME ================== */
